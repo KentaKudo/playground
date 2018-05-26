@@ -1,0 +1,19 @@
+program = jaki
+objs = jaki.o
+
+CC = gcc
+CFLAGS = -g -Wall
+
+.SUFFIXES: .c .o
+
+$(program): $(objs)
+	$(CC) $(CFLAGS) -o $(program) $^
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+.PHONY: clean
+clean:
+	rm -rf jaki jaki.o
+
+jaki.o: jaki.h
