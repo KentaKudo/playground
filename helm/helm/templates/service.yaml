@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2018-12-22T14:15:07Z
+  labels:
+    run: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name}}-{{ .Chart.Version }}"
+  name: "{{ .Release.Name }}"
+  namespace: default
+  resourceVersion: "3244"
+  selfLink: /api/v1/namespaces/default/services/example
+  uid: fc05a67d-05f3-11e9-9204-0800279b3da4
+spec:
+  clusterIP: 10.99.19.17
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30683
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: "{{ .Release.Name }}"
+  sessionAffinity: None
+  type: "{{ .Values.service.type }}"
+status:
+  loadBalancer: {}
